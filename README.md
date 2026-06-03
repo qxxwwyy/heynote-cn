@@ -1,9 +1,36 @@
-# Heynote
+# Heynote 中文版
 
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/heyman/heynote)](https://github.com/heyman/heynote/releases)
-[![Build Status](https://github.com/heyman/heynote/workflows/Tests/badge.svg)](https://github.com/heyman/heynote/actions?query=workflow%3ATests)
+> Heynote 的中文本地化 Fork，基于 [Heynote v2.9.0](https://github.com/heyman/heynote)。
 
-<img src="https://heynote.com/img/logo.png" style="width:79px;">
+## 🇨🇳 本 Fork 改动
+
+### 界面中文汉化
+
+完整的简体中文本地化，覆盖所有 UI 元素：
+
+- **应用界面**：设置面板、状态栏、缓冲区选择器、语言选择器、新建/编辑缓冲区对话框、错误提示、左侧面板
+- **Electron 菜单**：菜单栏、右键上下文菜单、关于对话框、命令面板
+- **内容翻译**：初始欢迎内容、Math 区块描述、"已复制"反馈、日期格式化
+- **语言自动检测**：根据系统语言自动切换中文/英文，支持运行时动态切换
+- 品牌名 "Heynote"、编程语言名称、代码内容保持原文不翻译
+
+### Math 区块支持中文变量
+
+扩展了 Math.js 的标识符验证，支持 CJK 统一汉字作为变量名：
+
+```
+价格 = 29.9
+数量 = 3
+总价 = 价格 * 数量    // 89.7
+```
+
+涵盖 CJK 扩展 A（U+3400-U+4DBF）、CJK 统一汉字（U+4E00-U+9FFF）、CJK 兼容汉字（U+F900-U+FAFF）。
+
+### 仅提供 Windows 构建
+
+本 Fork 仅构建 Windows（x64）安装包，不含 Mac/Linux。CI 使用 GitHub Actions，commit message 含 `#build` 或推送 `v` 标签时触发构建。
+
+---
 
 ## General Information
 
