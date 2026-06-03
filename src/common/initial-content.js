@@ -1,5 +1,21 @@
 import { keyHelpStr } from "../../shared-utils/key-helper.ts"
-import i18n from '@/src/i18n/index.js'
+
+// English fallback translations for use in Electron main process (no vue-i18n runtime)
+const fallbackT = (key) => ({
+    'initialContent.welcome': 'Welcome to Heynote! 👋',
+    'initialContent.readDocs': 'Read full documentation at https://heynote.com/docs',
+    'initialContent.mathBlockDescription': 'This is a Math block. Here, rows are evaluated as math expressions.',
+    'initialContent.unitConversion': 'It also supports some basic unit conversions, including currencies:',
+    'initialContent.markdownCheckboxes': 'In Markdown blocks, lists with [x] and [ ] are rendered as checkboxes:',
+    'initialContent.downloadHeynote': '- [x] Download Heynote',
+    'initialContent.tryOutHeynote': '- [ ] Try out Heynote',
+}[key] || key)
+
+// Lazy-loaded i18n reference (renderer process only). Using a mutable let so the
+// i18n module can set it after initialization without creating a circular dependency
+// or pulling vue-i18n into the Electron main process bundle.
+let _i18n = null
+export function _setI18n(i18nInstance) { _i18n = i18nInstance }
 
 export function getPlatformIdFromHeynotePlatform(platform) {
     if (platform?.isWindows) {
@@ -11,9 +27,9 @@ export function getPlatformIdFromHeynotePlatform(platform) {
     return "darwin"
 }
 
-export function getInitialContent(platform, includeDevContent = false) {
+export function getInitialContent(platform, includeDevContent = false, tFn) {
     const created = (new Date()).toISOString()
-    const t = i18n.global.t.bind(i18n.global)
+    const t = tFn || (_i18n ? _i18n.global.t.bind(_i18n.global) : fallbackT)
 
     const initialContent = `
 {"formatVersion":"2.0.0","name":"Scratch"}
