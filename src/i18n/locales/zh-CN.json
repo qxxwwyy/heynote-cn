@@ -72,7 +72,8 @@
         "addKeybinding": "添加快捷键",
         "source": "来源",
         "key": "按键",
-        "commandLabel": "命令"
+        "commandLabel": "命令",
+        "tabSection": "标签页"
     },
     "language": {
         "autoDetect": "自动检测"
@@ -92,7 +93,7 @@
         "edit": "编辑",
         "reallyDelete": "确认删除？",
         "delete": "删除",
-        "moveBlockTo": "移动区块到...",
+        "moveBlockTo": "移动区块到…",
         "andMore": "还有 {count} 个"
     },
     "newBuffer": {
@@ -158,7 +159,7 @@
         "website": "网站",
         "openHeynote": "打开 Heynote",
         "quit": "退出",
-        "archive": "归档...",
+        "archive": "归档…",
         "editBuffer": "编辑缓冲区…",
         "deleteBuffer": "删除缓冲区",
         "openBuffer": "打开缓冲区…",

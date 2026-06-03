@@ -1,4 +1,4 @@
-const { app, Menu } = require("electron")
+const { app, Menu, ipcMain } = require("electron")
 import { OPEN_SETTINGS_EVENT, UNDO_EVENT, REDO_EVENT, MOVE_BLOCK_EVENT, DELETE_BLOCK_EVENT, CHANGE_BUFFER_EVENT, SELECT_ALL_EVENT, SCRATCH_FILE_NAME } from '@/src/common/constants'
 import { openAboutWindow } from "./about";
 import { quit } from "./index"
@@ -25,8 +25,13 @@ export function initMenuIpc(win) {
     if (sysLocale && sysLocale.startsWith("zh")) {
         setMenuLocale("zh-CN")
     }
-    // Rebuild menu when locale changes
+    // Rebuild menu with initial locale
     rebuildMenu()
+    // Listen for runtime locale changes from renderer
+    ipcMain.on("menu:setLocale", (_event, locale) => {
+        setMenuLocale(locale)
+        rebuildMenu()
+    })
 }
 
 let currentMenu = null

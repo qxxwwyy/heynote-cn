@@ -72,7 +72,8 @@
         "addKeybinding": "Add Keybinding",
         "source": "Source",
         "key": "Key",
-        "commandLabel": "Command"
+        "commandLabel": "Command",
+        "tabSection": "Tabs"
     },
     "language": {
         "autoDetect": "Auto-detect"

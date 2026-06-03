@@ -134,9 +134,8 @@
                     }
                     
                     const newNoteItem = {
-                        name: "$t(bufferSelector.createNew)",
+                        name: this.$t("bufferSelector.createNew"),
                         createNew:true,
-                        isI18nKey: true,
                     }
                     return [
                         ...items,
@@ -323,7 +322,7 @@
                         @click="selectItem(item)"
                         ref="item"
                     >
-                        <span class="name" v-html="item.isI18nKey ? $t('bufferSelector.createNew') : item.name" />
+                        <span class="name" v-html="item.name" />
                         <span class="path" v-html="item.folder" />
                         <span v-if="item.bindings" class="bindings">
                             <span 

@@ -461,7 +461,7 @@
 
                         <div class="row">
                             <div class="entry">
-                                <h2>{{$t("settings.showTabs")}}</h2>
+                                <h2>{{$t("settings.tabSection")}}</h2>
                                 <label>
                                     <input 
                                         type="checkbox" 
