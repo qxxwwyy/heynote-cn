@@ -7,6 +7,7 @@ import { foldState } from "@codemirror/language"
 import { getNoteBlockFromPos } from "./block"
 import { transactionsHasAnnotation, CURRENCIES_LOADED } from "../annotation"
 import { isBlockFolded } from "../fold-gutter"
+import i18n from '@/src/i18n/index.js'
 
 
 class MathResult extends WidgetType {
@@ -30,7 +31,7 @@ class MathResult extends WidgetType {
             navigator.clipboard.writeText(this.copyResult)
             const copyElement = document.createElement("i")
             copyElement.className = "heynote-math-result-copied"
-            copyElement.innerHTML = "Copied!"
+            copyElement.innerHTML = i18n.global.t('math.copied')
             wrap.appendChild(copyElement)
             copyElement.offsetWidth // trigger reflow so that the animation is shown
             copyElement.className = "heynote-math-result-copied fade-out"

@@ -11,7 +11,7 @@
     }).sort((a, b) => {
         return a.name.localeCompare(b.name)
     })
-    items.unshift({token: "auto", name:"Auto-detect"})
+    items.unshift({token: "auto", name:"Auto-detect", isI18nKey: true})
 
     items.forEach((item, idx) => {
         item.preparedName = fuzzysort.prepare(item.name)
@@ -33,16 +33,21 @@
         computed: {
             filteredItems() {
                 if (this.filter === "") {
-                    return items
+                    return items.map(item => ({
+                        ...item,
+                        displayName: item.isI18nKey ? this.$t('language.autoDetect') : item.name,
+                    }))
                 }
                 const searchResults = fuzzysort.go(this.filter, items, {
                     keys: ['name', 'guesslang'],
                 })
                 return searchResults.map(result => {
                     const highlight = result[0].highlight("<b>", "</b>")
+                    const obj = result.obj
                     return {
-                        "token": result.obj.token,
-                        "name": highlight || result.obj.name,
+                        "token": obj.token,
+                        "name": highlight || obj.name,
+                        "displayName": obj.isI18nKey ? this.$t('language.autoDetect') : (highlight || obj.name),
                     }
                 })
             },
@@ -112,7 +117,7 @@
                 :class="idx === selected ? 'selected' : ''"
                 @click="selectItem(item.token)"
                 ref="item"
-                v-html="item.name"
+                v-html="item.displayName"
             />
         </ul>
     </form>

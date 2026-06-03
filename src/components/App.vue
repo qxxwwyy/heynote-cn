@@ -84,7 +84,7 @@
             })
 
             window.heynote.mainProcess.on('tab:deleteBuffer', (event, tabPath) => {
-                if (confirm(`Are you sure you want to delete the buffer "${this.heynoteStore.getBufferTitle(tabPath)}"?`)) {
+                if (confirm(this.$t('confirm.deleteBuffer', {name: this.heynoteStore.getBufferTitle(tabPath)}))) {
                     this.deleteBuffer(tabPath)
                 }
                 this.focusEditor()
@@ -337,7 +337,7 @@
                 />
                 <BufferSelector 
                     v-if="showMoveToBufferSelector" 
-                    headline="Move block to..."
+                    :headline="$t('bufferSelector.moveBlockTo')"
                     :commandsEnabled="false"
                     @openBuffer="onMoveCurrentBlockToOtherEditor"
                     @openCreateBuffer="(nameSuggestion) => openCreateBuffer('currentBlock', nameSuggestion)"

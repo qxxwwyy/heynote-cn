@@ -85,11 +85,11 @@
         computed: {
             statusText() {
                 if (this.downloading) {
-                    return "Downloading update… " + this.updateProgress.percent.toFixed(0) + "%"
+                    return this.$t('updateStatus.downloadingUpdate', {percent: this.updateProgress.percent.toFixed(0)}) + " "
                 } else if (this.updateDownloaded) {
-                    return "Update & Restart"
+                    return this.$t('updateStatus.updateAndRestart')
                 } else if (this.updateAvailable) {
-                    return "New version available!"
+                    return this.$t('updateStatus.newVersionAvailable')
                 } else {
                     return ""
                 }
@@ -99,11 +99,11 @@
                 if (this.downloading) {
                     return ""
                 } else if (this.updateDownloaded) {
-                    return "Click to restart and update Heynote"
+                    return this.$t('updateStatus.clickToRestart')
                 } else if (this.updateAvailable) {
-                    return "Update to version " + this.version + " (current version: " + this.currentVersion + ")"
+                    return this.$t('updateStatus.updateToVersion', {version: this.version, currentVersion: this.currentVersion})
                 } else {
-                    return "Check for updates"
+                    return this.$t('updateStatus.checkForUpdates')
                 }
             },
 

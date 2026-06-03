@@ -10,6 +10,7 @@ import { DEFAULT_LEFT_PANEL_WIDTH } from './common/constants.js'
 import { loadCurrencies } from './currency'
 import { useErrorStore } from './stores/error-store'
 import { initHeynoteStore } from './stores/heynote-store'
+import i18n from './i18n/index.js'
 
 
 // Set before Vue mounts so CSS using the variable has a default on first paint.
@@ -20,6 +21,7 @@ const app = createApp(App)
 
 app.use(pinia)
 app.use(PrimeVue)
+app.use(i18n)
 app.mount('#app').$nextTick(() => {
     // hide loading screen
     postMessage({ payload: 'removeLoading' }, '*')

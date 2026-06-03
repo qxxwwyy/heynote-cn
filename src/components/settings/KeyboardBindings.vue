@@ -90,13 +90,13 @@
 <template>
     <div class="container">
         <div class="header" :inert="addKeyBinding">
-            <h2>Keyboard Bindings</h2>
+            <h2>{{$t('settings.keyboardBindings')}}</h2>
             <!--<p>User key bindings can be reordered. Bindings that appear first take precedence</p>-->
             <div class="button-container">
                 <button 
                     class="add-keybinding"
                     @click="addKeyBinding = !addKeyBinding"
-                >Add Keybinding</button>
+                >{{$t('settings.addKeybinding')}}</button>
             </div>
         </div>
         
@@ -109,9 +109,9 @@
         <table :inert="addKeyBinding">
             <thead>
                 <tr>
-                    <th>Source</th>
-                    <th>Key</th>
-                    <th>Command</th>
+                    <th>{{$t('settings.source')}}</th>
+                    <th>{{$t('settings.key')}}</th>
+                    <th>{{$t('settings.commandLabel')}}</th>
                     <th></th>
                     <th></th>
                 </tr>

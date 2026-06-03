@@ -167,9 +167,9 @@
     <div class="fader" @keydown.stop="onKeydown" tabindex="-1">
         <form class="new-note" tabindex="-1" @focusout="onFocusOut" ref="container" @submit.prevent="submit">
             <div class="container">
-                <h1>Edit Buffer</h1>
+                <h1>{{$t('editBuffer.editBuffer')}}</h1>
                 <input 
-                    placeholder="Name"
+                    placeholder="{{$t('app.name')}}"
                     type="text" 
                     v-model="name"
                     :class="nameInputClass"
@@ -178,7 +178,7 @@
                     @input="errors.name = false"
                 />
 
-                <label for="folder-select">Move to</label>
+                <label for="folder-select">{{$t('editBuffer.moveTo')}}</label>
                 <FolderSelector 
                     v-if="directoryTree"
                     :directoryTree="directoryTree"
@@ -189,12 +189,12 @@
                 />
             </div>
             <div class="bottom-bar">
-                <button type="submit">Update Buffer</button>
+                <button type="submit">{{$t('editBuffer.updateBuffer')}}</button>
                 <button 
                     class="cancel"
                     @keydown="onCancelKeydown"
                     @click.stop.prevent="cancel"
-                >Cancel</button>
+                >{{$t('app.cancel')}}</button>
             </div>
         </form>
     </div>

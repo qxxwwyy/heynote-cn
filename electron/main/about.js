@@ -4,9 +4,11 @@ import { app, BrowserWindow, nativeTheme } from 'electron'
 import { win } from "./index"
 import CONFIG from "../config"
 import { getVersionString } from './version'
+import { t, setMenuLocale } from "./menu-locales"
 
 let aboutWindow = null;
 
+// TODO: i18n - About dialog runs in main process, cannot use vue-i18n directly.
 export function openAboutWindow() {
     if (!aboutWindow) {
         aboutWindow = new BrowserWindow({
@@ -20,7 +22,7 @@ export function openAboutWindow() {
             fullscreenable: false,
             autoHideMenuBar: true,
             //backgroundColor: nativeTheme.shouldUseDarkColors ? '#262B37' : '#FFFFFF',
-            title: "About Heynote",
+            title: t('about.title'),
             show: false,
             webPreferences: {
                 preload: join(__dirname, '../preload/about-preload.js'),

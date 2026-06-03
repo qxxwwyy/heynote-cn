@@ -10,7 +10,7 @@ import {
     LIBRARY_SEARCH_START, LIBRARY_SEARCH_CANCEL, LIBRARY_SEARCH_MATCH, LIBRARY_SEARCH_DONE, LIBRARY_SEARCH_ERROR,
 } from '@/src/common/constants'
 
-import { menu, getTrayMenu, getEditorContextMenu, getTabContextMenu, getBufferTreeContextMenu, getBufferTreeDirectoryContextMenu, getBufferTreeBackgroundContextMenu, getSpellcheckingContextMenu } from './menu'
+import { menu, getTrayMenu, getEditorContextMenu, getTabContextMenu, getBufferTreeContextMenu, getBufferTreeDirectoryContextMenu, getBufferTreeBackgroundContextMenu, getSpellcheckingContextMenu, initMenuIpc } from './menu'
 import CONFIG from "../config"
 import { isDev, isLinux, isMac, isWindows } from '../detect-platform';
 import { initializeAutoUpdate, checkForUpdates, updateAutoInstallUpdates } from './auto-update';
@@ -54,7 +54,8 @@ if (!process.env.VITE_DEV_SERVER_URL && !app.requestSingleInstanceLock()) {
     process.exit(0)
 }
 
-// Set custom application menu
+// Initialize menu locale based on system language, then set custom application menu
+initMenuIpc()
 Menu.setApplicationMenu(menu)
 
 

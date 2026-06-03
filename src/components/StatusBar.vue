@@ -67,7 +67,7 @@
             },
 
             formatBlockTitle() {
-                return `Format Block Content (Alt + Shift + F)`
+                return `${this.$t('statusBar.formatBlockContent')} (Alt + Shift + F)`
             },
 
             updatesEnabled() {
@@ -86,7 +86,7 @@
                 if (!this.currentCreatedTime) {
                     return null
                 }
-                return "Block created " +  formatFullDate(this.currentCreatedTime, this.systemLocale)
+                return this.$t('statusBar.blockCreated') + " " +  formatFullDate(this.currentCreatedTime, this.systemLocale)
             },
         },
 
@@ -109,7 +109,7 @@
         <div 
             @click.stop="$emit('toggleLeftPanel')"
             class="status-block sidebar clickable"
-            :title="getTooltip('Toggle Sidebar', 'toggleLeftPanel')"
+            :title="getTooltip($t('statusBar.toggleSidebar'), 'toggleLeftPanel')"
         >
             <span class="icon icon-format"></span>
         </div>
@@ -130,23 +130,23 @@
         <div 
             @click.stop="$emit('openBufferSelector')"
             class="status-block note clickable"
-            :title="getTooltip('Change Buffer', 'openBufferSelector')"
+            :title="getTooltip($t('statusBar.changeBuffer'), 'openBufferSelector')"
         >
             {{ currentBufferName }} 
         </div>
         <div 
             @click.stop="$emit('openLanguageSelector')"
             class="status-block lang clickable"
-            :title="getTooltip('Change language for current block', 'openLanguageSelector')"
+            :title="getTooltip($t('statusBar.changeLanguage'), 'openLanguageSelector')"
         >
             {{ languageName }} 
-            <span v-if="currentLanguageAuto" class="auto">(auto)</span>
+            <span v-if="currentLanguageAuto" class="auto">({{ $t('language.autoDetect') }})</span>
         </div>
         <div 
             v-if="supportsFormat"
             @click.stop="$emit('formatCurrentBlock')"
             class="status-block format clickable"
-            :title="getTooltip('Format Block Content', 'formatBlockContent')"
+            :title="getTooltip($t('statusBar.formatBlockContent'), 'formatBlockContent')"
         >
             <span class="icon icon-format"></span>
         </div>
@@ -155,7 +155,7 @@
             @mousedown.prevent
             @contextmenu="onSpellcheckingContextMenu"
             :class="'status-block spellcheck clickable' + (this.spellcheckEnabled ? ' spellcheck-enabled' : '')"
-            :title="getTooltip('Spellchecking', 'toggleSpellcheck')"
+            :title="getTooltip($t('statusBar.spellchecking'), 'toggleSpellcheck')"
         >
             <span class="icon icon-format"></span>
         </div>
@@ -165,7 +165,7 @@
             @click.stop="$emit('toggleAlwaysOnTop')"
             @mousedown.prevent
             class="status-block pin clickable"
-            :title="getTooltip('Pin', 'toggleAlwaysOnTop')"
+            :title="getTooltip($t('statusBar.pin'), 'toggleAlwaysOnTop')"
         >
             <span class="icon icon-format" :class="{'pinned': alwaysOnTop}"></span>
         </div>
@@ -178,7 +178,7 @@
         <div 
             @click.stop="$emit('openSettings')"
             class="status-block settings clickable"
-            title="Settings"
+            :title="$t('statusBar.settings')"
         >
             <span class="icon icon-format"></span>
         </div>

@@ -134,20 +134,20 @@
 
             dialogTitle() {
                 if (this.createBufferParams.mode === "currentBlock") {
-                    return "Move Block to New Buffer"
+                    return this.$t('newBuffer.moveBlockToNewBuffer')
                 }
                 if (this.createBufferParams.mode === "archiveScratch") {
-                    return "Archive Buffer"
+                    return this.$t('newBuffer.archiveBuffer')
                 }
-                return "New Buffer"
+                return this.$t('newBuffer.newBuffer')
             },
 
             folderLabel() {
-                return this.createBufferParams.mode === "archiveScratch" ? "Archive in" : "Create in"
+                return this.createBufferParams.mode === "archiveScratch" ? this.$t('newBuffer.archiveIn') : this.$t('newBuffer.createIn')
             },
 
             submitButtonText() {
-                return this.createBufferParams.mode === "archiveScratch" ? "Archive Buffer" : "Create New Buffer"
+                return this.createBufferParams.mode === "archiveScratch" ? this.$t('newBuffer.archiveBuffer') : this.$t('newBuffer.createNewBuffer')
             },
         },
 
@@ -255,7 +255,7 @@
             <div class="container">
                 <h1>{{ dialogTitle }}</h1>
                 <input 
-                    placeholder="Name"
+                    placeholder="{{$t('app.name')}}"
                     type="text" 
                     v-model="name"
                     :class="nameInputClass"
@@ -282,7 +282,7 @@
                     class="cancel"
                     @keydown="onCancelKeydown"
                     @click.stop.prevent="cancel"
-                >Cancel</button>
+                >{{$t('app.cancel')}}</button>
             </div>
         </form>
     </div>

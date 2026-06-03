@@ -1,4 +1,5 @@
 import { keyHelpStr } from "../../shared-utils/key-helper.ts"
+import i18n from '@/src/i18n/index.js'
 
 export function getPlatformIdFromHeynotePlatform(platform) {
     if (platform?.isWindows) {
@@ -12,23 +13,24 @@ export function getPlatformIdFromHeynotePlatform(platform) {
 
 export function getInitialContent(platform, includeDevContent = false) {
     const created = (new Date()).toISOString()
+    const t = i18n.global.t.bind(i18n.global)
 
     const initialContent = `
 {"formatVersion":"2.0.0","name":"Scratch"}
 ∞∞∞text;created=${created}
-Welcome to Heynote! 👋
+${t('initialContent.welcome')}
 
 ${keyHelpStr(platform)}
 ∞∞∞markdown;created=${created}
-Read full documentation at https://heynote.com/docs
+${t('initialContent.readDocs')}
 ∞∞∞math;created=${created}
-This is a Math block. Here, rows are evaluated as math expressions. 
+${t('initialContent.mathBlockDescription')}
 
 radius = 5
 area = radius^2 * PI
 sqrt(9)
 
-It also supports some basic unit conversions, including currencies:
+${t('initialContent.unitConversion')}
 
 13 inches in cm
 time = 3900 seconds to minutes
@@ -36,10 +38,10 @@ time * 2
 
 1 EUR in USD
 ∞∞∞markdown;created=${created}
-In Markdown blocks, lists with [x] and [ ] are rendered as checkboxes:
+${t('initialContent.markdownCheckboxes')}
 
-- [x] Download Heynote
-- [ ] Try out Heynote
+${t('initialContent.downloadHeynote')}
+${t('initialContent.tryOutHeynote')}
 ∞∞∞text-a;created=${created}
 `
 

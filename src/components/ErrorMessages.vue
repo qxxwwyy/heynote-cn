@@ -25,7 +25,7 @@
     >
         <div class="dialog">
             <div class="dialog-content">
-                <h1>Error</h1>
+                <h1>{{$t('errorMessages.error')}}</h1>
                 <p>
                     {{ errors[0] }}
                 </p>
@@ -36,13 +36,13 @@
                         v-if="errors.length > 1"
                         class="count"
                     >
-                        {{ errors.length-1 }} more {{ pluralize(errors.length-1, "error", "errors") }}
+                        {{ errors.length-1 }} {{ errors.length-1 === 1 ? $t('errorMessages.errorSingular') : $t('errorMessages.errorPlural') }}
                     </div>
                 </div>
                 <button 
                     @click="popError"
                     class="close"
-                >Close</button>
+                >{{$t('app.close')}}</button>
             </div>
         </div>
         <div class="shader"></div>

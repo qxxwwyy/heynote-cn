@@ -1,3 +1,5 @@
+import i18n from '@/src/i18n/index.js'
+
 export function formatDate(date, locale) {
     const now = new Date();
 
@@ -14,13 +16,13 @@ export function formatDate(date, locale) {
         });
     }
 
-    // Yesterday: show "Yesterday, <time>"
+    // Yesterday: show localized "Yesterday, <time>"
     if (diffDays === 1) {
         const time = date.toLocaleTimeString(locale, {
             hour: "2-digit",
             minute: "2-digit"
         });
-        return `Yesterday ${time}`;
+        return `${i18n.global.t('formatDate.yesterday')} ${time}`;
     }
 
     // Otherwise: full date + time, omit year if same

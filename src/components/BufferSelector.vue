@@ -68,7 +68,7 @@
                     }
                 })
                 return commands.map(([cmdKey, cmd]) => ({
-                    name: `${cmd.category}: ${cmd.description}`,
+                    name: `${this.$t('commandCategories.' + (cmd.category || '').toLowerCase())}: ${this.$t('commands.' + cmdKey, cmd.description)}`,
                     cmd: cmdKey,
                     isCommand: true,
                     bindings: this.commandKeyBindingsMap[cmdKey],
@@ -134,8 +134,9 @@
                     }
                     
                     const newNoteItem = {
-                        name: "Create new…", 
+                        name: "$t(bufferSelector.createNew)",
                         createNew:true,
+                        isI18nKey: true,
                     }
                     return [
                         ...items,
@@ -322,7 +323,7 @@
                         @click="selectItem(item)"
                         ref="item"
                     >
-                        <span class="name" v-html="item.name" />
+                        <span class="name" v-html="item.isI18nKey ? $t('bufferSelector.createNew') : item.name" />
                         <span class="path" v-html="item.folder" />
                         <span v-if="item.bindings" class="bindings">
                             <span 
@@ -331,7 +332,7 @@
                                 class="binding"
                             > {{ binding }}</span>
                             <span v-if="item.bindings.length > 2" class="more">
-                                and {{ item.bindings.length - 2 }} more
+                                {{ $t('bufferSelector.andMore', { count: item.bindings.length - 2 }) }}
                             </span>
                         </span>
                         <span :class="{'action-buttons':true, 'visible':actionButton > 0 && idx === selected}">
@@ -339,17 +340,17 @@
                                 v-if="actionButton > 0 && idx === selected"
                                 :class="{'selected':actionButton === 1}"
                                 @click.stop.prevent="editBufferMetadata(item.path)"
-                            >Edit</button>
+                            >{{$t('app.edit')}}</button>
                             <button 
                                 v-if="actionButton > 0 && idx === selected"
                                 :class="{'delete':true, 'selected':actionButton === 2, 'confirm':deleteConfirm}"
                                 @click.stop.prevent="deleteConfirmNote(item.path)"
                             >
                                 <template v-if="deleteConfirm">
-                                    Really Delete?
+                                    {{$t('bufferSelector.reallyDelete')}}
                                 </template>
                                 <template v-else>
-                                    Delete
+                                    {{$t('app.delete')}}
                                 </template>
                             </button>
                             <button

@@ -133,11 +133,11 @@
             <button
                 @click="() => currentLeftPanel='buffer-tree'"
                 :class="{selected:currentLeftPanel=='buffer-tree'}"
-            ><i class="icon buffers"></i>Buffers</button>
+            ><i class="icon buffers"></i>{{$t('leftPanel.buffers')}}</button>
             <button
                 @click="() => currentLeftPanel='search'"
                 :class="{selected:currentLeftPanel=='search'}"
-            ><i class="icon search"></i>Search</button>
+            ><i class="icon search"></i>{{$t('leftPanel.search')}}</button>
         </div>
         <div
             :class="resizerClass"
