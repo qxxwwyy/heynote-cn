@@ -20,10 +20,14 @@ function getParentDirectory(path) {
 // Listen for locale changes from the renderer process
 // The renderer sends 'menu:setLocale' when the i18n locale changes
 export function initMenuIpc(win) {
-    // Set initial locale from system
-    const sysLocale = app.getSystemLocale()
-    if (sysLocale && sysLocale.startsWith("zh")) {
-        setMenuLocale("zh-CN")
+    // Set initial locale from system (use Intl API, no app.ready required)
+    try {
+        const sysLocale = Intl.DateTimeFormat().resolvedOptions().locale || ""
+        if (sysLocale.startsWith("zh")) {
+            setMenuLocale("zh-CN")
+        }
+    } catch (e) {
+        // fallback to English
     }
     // Rebuild menu with initial locale
     rebuildMenu()
