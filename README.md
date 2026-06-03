@@ -2,7 +2,7 @@
 
 > Heynote 的中文本地化 Fork，基于 [Heynote v2.9.0](https://github.com/heyman/heynote)。
 
-## 🇨🇳 本 Fork 改动
+## 改动
 
 ### 界面中文汉化
 
